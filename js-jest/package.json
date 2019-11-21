@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in JavaScript with Jest",
   "scripts": {
+    "lintfix": "yarn lint --fix",
+    "lint": "yarn eslint -c .eslintrc.json src test",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
   "devDependencies": {
+    "eslint": "^6.6.0",
     "jest": "^24.9.0"
   }
 }
