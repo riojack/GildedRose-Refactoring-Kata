@@ -34,4 +34,16 @@ describe('Gilded Rose', () => {
 
     expect(shop.items[0].quality).toBe(8);
   });
+
+  it('should maintain a quality of zero for an expired Brewfest Sampler', () => {
+    const sellIn = 0;
+    const quality = 0;
+
+    const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]);
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toBe(0);
+  });
 });
