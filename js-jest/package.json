@@ -5,9 +5,7 @@
   "scripts": {
     "lintfix": "yarn lint --fix",
     "lint": "yarn eslint -c .eslintrc.json src test",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
