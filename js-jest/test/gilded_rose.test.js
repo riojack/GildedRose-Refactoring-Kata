@@ -10,4 +10,16 @@ describe('Gilded Rose', () => {
 
     expect(items[0].name).toBe('foo');
   });
+
+  it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
+    const sellIn = 5;
+    const quality = 10;
+
+    const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]);
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toBe(9);
+  });
 });
