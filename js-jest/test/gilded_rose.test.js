@@ -71,6 +71,18 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(50);
   });
 
+  it('should prevent Aged Brie\'s quality from exceeding fifty even after expiring', () => {
+    const sellIn = 0;
+    const quality = 50;
+
+    const brewfestSampler = new Item('Aged Brie', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]);
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toBe(50);
+  });
+
   it('should maintain the expiration and quality of "Sulfuras, Hand of Ragnaros" over time', () => {
     const sellIn = 50;
     const quality = 5;
