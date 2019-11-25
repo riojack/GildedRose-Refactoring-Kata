@@ -1,14 +1,22 @@
 const {Shop, Item} = require('../src/gilded_rose');
 
 describe('Gilded Rose', () => {
-  it('should foo', () => {
-    const sellIn = 0;
-    const quality = 0;
-    const gildedRose = new Shop([new Item('foo', sellIn, quality)]);
+  it('should update all items in the store', () => {
+    const gildedRose = new Shop([
+      new Item('foo', 5, 5),
+      new Item('bar', 5, 1),
+      new Item('baz', 5, 32)
+    ]);
 
-    const items = gildedRose.updateQuality();
+    const [foo, bar, baz] = gildedRose.updateQuality();
 
-    expect(items[0].name).toBe('foo');
+    expect(foo.quality).toBe(4);
+    expect(bar.quality).toBe(0);
+    expect(baz.quality).toBe(31);
+
+    expect(foo.sellIn).toBe(4);
+    expect(bar.sellIn).toBe(4);
+    expect(baz.sellIn).toBe(4);
   });
 
   it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
