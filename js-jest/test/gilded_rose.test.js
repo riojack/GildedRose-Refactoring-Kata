@@ -1,6 +1,12 @@
 const {Shop, Item} = require('../src/gilded_rose');
 
 describe('Gilded Rose', () => {
+  it('should default items to an empty list', () => {
+    const shop = new Shop();
+
+    expect(shop.items).toHaveLength(0);
+  });
+
   it('should update all items in the store', () => {
     const gildedRose = new Shop([
       new Item('foo', 5, 5),
