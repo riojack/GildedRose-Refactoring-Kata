@@ -59,9 +59,9 @@ describe('Gilded Rose', () => {
     const sellIn = 10;
     const quality = 5;
 
-    const brewfestSampler = new Item('Aged Brie', sellIn, quality);
+    const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([agedBrie]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
@@ -71,9 +71,9 @@ describe('Gilded Rose', () => {
     const sellIn = 0;
     const quality = 5;
 
-    const brewfestSampler = new Item('Aged Brie', sellIn, quality);
+    const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([agedBrie]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
@@ -83,9 +83,9 @@ describe('Gilded Rose', () => {
     const sellIn = 10;
     const quality = 50;
 
-    const brewfestSampler = new Item('Aged Brie', sellIn, quality);
+    const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([agedBrie]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
@@ -95,9 +95,9 @@ describe('Gilded Rose', () => {
     const sellIn = 0;
     const quality = 50;
 
-    const brewfestSampler = new Item('Aged Brie', sellIn, quality);
+    const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([agedBrie]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
@@ -107,9 +107,9 @@ describe('Gilded Rose', () => {
     const sellIn = 50;
     const quality = 5;
 
-    const brewfestSampler = new Item('Sulfuras, Hand of Ragnaros', sellIn, quality);
+    const sulfuras = new Item('Sulfuras, Hand of Ragnaros', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([sulfuras]);
     shop.updateQuality();
     shop.updateQuality();
     shop.updateQuality();
@@ -122,9 +122,9 @@ describe('Gilded Rose', () => {
     const sellIn = 50;
     const quality = 5;
 
-    const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
+    const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([backstagePasses]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
@@ -134,9 +134,9 @@ describe('Gilded Rose', () => {
     const sellIn = 50;
     const quality = 50;
 
-    const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
+    const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([backstagePasses]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
@@ -146,9 +146,9 @@ describe('Gilded Rose', () => {
     const sellIn = 10;
     const quality = 5;
 
-    const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
+    const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([backstagePasses]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(7);
@@ -170,9 +170,9 @@ describe('Gilded Rose', () => {
     const sellIn = 0;
     const quality = 5;
 
-    const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
+    const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
+    const shop = new Shop([backstagePasses]);
     shop.updateQuality();
 
     expect(shop.items[0].quality).toBe(0);
