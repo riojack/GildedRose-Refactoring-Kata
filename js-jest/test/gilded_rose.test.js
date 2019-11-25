@@ -58,4 +58,19 @@ describe('Gilded Rose', () => {
 
     expect(shop.items[0].quality).toBe(6);
   });
+
+  it('should maintain the expiration and quality of "Sulfuras, Hand of Ragnaros" over time', () => {
+    const sellIn = 50;
+    const quality = 5;
+
+    const brewfestSampler = new Item('Sulfuras, Hand of Ragnaros', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]);
+    shop.updateQuality();
+    shop.updateQuality();
+    shop.updateQuality();
+
+    expect(shop.items[0].sellIn).toBe(sellIn);
+    expect(shop.items[0].quality).toBe(quality);
+  });
 });
