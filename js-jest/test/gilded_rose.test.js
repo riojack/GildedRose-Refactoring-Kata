@@ -98,6 +98,18 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(6);
   });
 
+  it('should prevent the quality of "Backstage passes to a TAFKAL80ETC concert" from exceeding fifty', () => {
+    const sellIn = 50;
+    const quality = 50;
+
+    const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]);
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toBe(50);
+  });
+
   it('should increase the quality of "Backstage passes to a TAFKAL80ETC concert" by two if the sellIn is ten days or less', () => {
     const sellIn = 10;
     const quality = 5;
