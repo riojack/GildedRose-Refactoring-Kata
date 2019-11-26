@@ -1,7 +1,7 @@
 const {Item} = require('../src/item');
 
 describe('Item', () => {
-  it('should make a deep copy of the item', () => {
+  it('creates a deep copy of the item', () => {
     const item = new Item('foo', 5, 7);
 
     const copy = item.copy();

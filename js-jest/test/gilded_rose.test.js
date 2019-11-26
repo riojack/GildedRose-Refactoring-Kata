@@ -2,13 +2,13 @@ const {Item} = require('../src/item');
 const {Shop} = require('../src/gilded_rose');
 
 describe('Gilded Rose', () => {
-  it('should default items to an empty list', () => {
+  it('defaults to an empty list of items', () => {
     const shop = new Shop();
 
     expect(shop.items).toHaveLength(0);
   });
 
-  it('should return a new instance of the Shop with an empty list by default', () => {
+  it('returns a new instance of the shop when updating quality', () => {
     const shop = new Shop();
     const shopAfterUpdate = shop.updateQuality();
 
@@ -17,7 +17,7 @@ describe('Gilded Rose', () => {
     expect(shopAfterUpdate.items).not.toBe(shop.items);
   });
 
-  it('should update all items in the store', () => {
+  it('updates all items in the shop', () => {
     const gildedRose = new Shop([
       new Item('foo', 5, 5),
       new Item('bar', 5, 1),
@@ -35,7 +35,7 @@ describe('Gilded Rose', () => {
     expect(baz.sellIn).toBe(4);
   });
 
-  it('should create copies of all items after updating quality of items', () => {
+  it('updates copies of all items in the shop', () => {
     const gildedRose = new Shop([
       new Item('foo', 5, 5),
       new Item('bar', 5, 1),
@@ -54,7 +54,7 @@ describe('Gilded Rose', () => {
     expect(baz).not.toBe(gildedRose.items[2]);
   });
 
-  it('should degrade an unexpired Brewfest Sampler\'s sellIn by one after one day', () => {
+  it('decreases an unexpired "Brewfest Sampler\'s" sellIn by one after one day', () => {
     const sellIn = 5;
     const quality = 10;
 
@@ -65,7 +65,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].sellIn).toBe(4);
   });
 
-  it('should prevent negative sellIn after Brewfest Sampler has expired', () => {
+  it('prevents negative sellIn after "Brewfest Sampler" has expired', () => {
     const sellIn = 0;
     const quality = 10;
 
@@ -76,7 +76,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].sellIn).toBe(0);
   });
 
-  it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
+  it('decreases an unexpired "Brewfest Sampler\'s" quality by one after one day', () => {
     const sellIn = 5;
     const quality = 10;
 
@@ -87,7 +87,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(9);
   });
 
-  it('should degrade an expired Brewfest Sampler\'s quality twice as fast', () => {
+  it('decreases an expired "Brewfest Sampler\'s" quality twice as fast', () => {
     const sellIn = 0;
     const quality = 10;
 
@@ -98,7 +98,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(8);
   });
 
-  it('should maintain a quality of zero for an expired Brewfest Sampler', () => {
+  it('maintains a quality of zero for an expired "Brewfest Sampler"', () => {
     const sellIn = 0;
     const quality = 0;
 
@@ -109,7 +109,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(0);
   });
 
-  it('should increase Aged Brie\'s quality by one', () => {
+  it('increases "Aged Brie\'s" quality by one', () => {
     const sellIn = 10;
     const quality = 5;
 
@@ -120,7 +120,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(6);
   });
 
-  it('should increase Aged Brie\'s quality by one even if it has expired', () => {
+  it('increases "Aged Brie\'s" quality by one even if it has expired', () => {
     const sellIn = 0;
     const quality = 5;
 
@@ -131,7 +131,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(6);
   });
 
-  it('should prevent Aged Brie\'s quality from exceeding fifty', () => {
+  it('prevents "Aged Brie\'s" quality from exceeding fifty', () => {
     const sellIn = 10;
     const quality = 50;
 
@@ -142,7 +142,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(50);
   });
 
-  it('should prevent Aged Brie\'s quality from exceeding fifty even after expiring', () => {
+  it('prevents "Aged Brie\'s" quality from exceeding fifty even after expiring', () => {
     const sellIn = 0;
     const quality = 50;
 
@@ -153,7 +153,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(50);
   });
 
-  it('should maintain the expiration and quality of "Sulfuras, Hand of Ragnaros" over time', () => {
+  it('maintains the expiration and quality of "Sulfuras, Hand of Ragnaros" over time', () => {
     const sellIn = 50;
     const quality = 5;
 
@@ -168,7 +168,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(quality);
   });
 
-  it('should increase the quality of "Backstage passes to a TAFKAL80ETC concert" by one if the sellIn is more than ten days', () => {
+  it('increases the quality of "Backstage passes to a TAFKAL80ETC concert" by one if the sellIn is more than ten days', () => {
     const sellIn = 50;
     const quality = 5;
 
@@ -179,7 +179,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(6);
   });
 
-  it('should prevent the quality of "Backstage passes to a TAFKAL80ETC concert" from exceeding fifty', () => {
+  it('prevents the quality of "Backstage passes to a TAFKAL80ETC concert" from exceeding fifty', () => {
     const sellIn = 50;
     const quality = 50;
 
@@ -190,7 +190,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(50);
   });
 
-  it('should increase the quality of "Backstage passes to a TAFKAL80ETC concert" by two if the sellIn is ten days or less', () => {
+  it('increases the quality of "Backstage passes to a TAFKAL80ETC concert" by two if the sellIn is ten days or less', () => {
     const sellIn = 10;
     const quality = 5;
 
@@ -201,7 +201,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(7);
   });
 
-  it('should increase the quality of "Backstage passes to a TAFKAL80ETC concert" by three if the sellIn is five days or less', () => {
+  it('increases the quality of "Backstage passes to a TAFKAL80ETC concert" by three if the sellIn is five days or less', () => {
     const sellIn = 5;
     const quality = 5;
 
@@ -212,7 +212,7 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].quality).toBe(8);
   });
 
-  it('should drop the quality of "Backstage passes to a TAFKAL80ETC concert" to zero when it expires', () => {
+  it('decreases the quality of "Backstage passes to a TAFKAL80ETC concert" to zero when it expires', () => {
     const sellIn = 0;
     const quality = 5;
 
