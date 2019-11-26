@@ -2,7 +2,7 @@ const SULFURAS = 'Sulfuras, Hand of Ragnaros';
 const BRIE = 'Aged Brie';
 const PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
-const updateAgedBrie = (item) => {
+const updateAgedBrieItem = (item) => {
   const {quality} = item;
 
   if (quality >= 50) {
@@ -12,7 +12,7 @@ const updateAgedBrie = (item) => {
   item.quality = quality + 1;
 };
 
-const updateBackstagePass = (item) => {
+const updateBackstagePassItem = (item) => {
   const {quality, sellIn} = item;
 
   if (quality >= 50) {
@@ -56,9 +56,9 @@ const updateItem = (item) => {
   }
 
   if (name === BRIE) {
-    updateAgedBrie(item);
+    updateAgedBrieItem(item);
   } else if (name === PASSES) {
-    updateBackstagePass(item);
+    updateBackstagePassItem(item);
   } else {
     updateCommonItem(item);
   }
