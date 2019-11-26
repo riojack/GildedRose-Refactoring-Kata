@@ -7,11 +7,11 @@ const updateAgedBrieOrBackstagePass = (item) => {
     item.quality = item.quality + 1;
 
     if (item.name === PASSES) {
-      if (item.sellIn < 11) {
-        item.quality = item.quality + 1;
-      }
-
-      if (item.sellIn < 6) {
+      if (item.sellIn === 0) {
+        item.quality = 0;
+      } else if (item.sellIn < 6) {
+        item.quality = item.quality + 2;
+      } else if (item.sellIn < 11) {
         item.quality = item.quality + 1;
       }
     }
@@ -26,7 +26,6 @@ const updateCommonItem = (item) => {
       item.quality = item.quality - 1;
     }
   }
-
 };
 
 const updateItem = (item) => {
@@ -42,10 +41,6 @@ const updateItem = (item) => {
     updateAgedBrieOrBackstagePass(item);
   } else {
     updateCommonItem(item);
-  }
-
-  if (item.sellIn === 0 && item.name === PASSES) {
-    item.quality = 0;
   }
 
   return item;
