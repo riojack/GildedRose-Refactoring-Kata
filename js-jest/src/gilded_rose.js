@@ -18,43 +18,46 @@ const updateQualityForAgedBrieOrBackstagePasses = (item) => {
   }
 };
 
+const updateItem = (item) => {
+  if (item.name == SULFURAS) {
+    return item;
+  }
+
+  if (item.sellIn > 0) {
+    item.sellIn = item.sellIn - 1;
+  }
+
+  if (item.name == BRIE || item.name == PASSES) {
+    updateQualityForAgedBrieOrBackstagePasses(item);
+  } else if (item.quality > 0) {
+    item.quality = item.quality - 1;
+  }
+
+  if (item.sellIn == 0) {
+    if (item.name != BRIE) {
+      if (item.name != PASSES) {
+        if (item.quality > 0) {
+          item.quality = item.quality - 1;
+        }
+      } else {
+        item.quality = 0;
+      }
+    }
+  }
+
+  return item;
+};
+
 class Shop {
   constructor(items = []) {
     this.items = items;
   }
 
   updateQuality() {
-    const updatedItems = this.items
-      .map((item) => item.copy())
-      .map((item) => {
-        if (item.name == SULFURAS) {
-          return item;
-        }
-
-        if (item.sellIn > 0) {
-          item.sellIn = item.sellIn - 1;
-        }
-
-        if (item.name == BRIE || item.name == PASSES) {
-          updateQualityForAgedBrieOrBackstagePasses(item);
-        } else if (item.quality > 0) {
-          item.quality = item.quality - 1;
-        }
-
-        if (item.sellIn == 0) {
-          if (item.name != BRIE) {
-            if (item.name != PASSES) {
-              if (item.quality > 0) {
-                item.quality = item.quality - 1;
-              }
-            } else {
-              item.quality = 0;
-            }
-          }
-        }
-
-        return item;
-      });
+    const updatedItems =
+      this.items
+        .map((item) => item.copy())
+        .map((item) => updateItem(item));
 
     return new Shop(updatedItems);
   }
