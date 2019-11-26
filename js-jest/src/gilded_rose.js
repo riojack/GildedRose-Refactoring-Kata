@@ -51,7 +51,7 @@ const updateItem = (item) => {
     return item;
   }
 
-  if (sellIn > 0) {
+  if (sellIn >= 1) {
     item.sellIn = sellIn - 1;
   }
 
