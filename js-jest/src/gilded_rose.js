@@ -9,7 +9,7 @@ class Shop {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      let item = this.items[i];
+      const item = this.items[i];
 
       if (item.name == SULFURAS) {
         continue;
