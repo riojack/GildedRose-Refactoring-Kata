@@ -3,28 +3,33 @@ const BRIE = 'Aged Brie';
 const PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
 const updateAgedBrieOrBackstagePass = (item) => {
-  if (item.quality < 50) {
-    item.quality = item.quality + 1;
+  if (item.quality >= 50) {
+    return;
+  }
 
-    if (item.name === PASSES) {
-      if (item.sellIn === 0) {
-        item.quality = 0;
-      } else if (item.sellIn < 6) {
-        item.quality = item.quality + 2;
-      } else if (item.sellIn < 11) {
-        item.quality = item.quality + 1;
-      }
-    }
+  item.quality = item.quality + 1;
+
+  if (item.name !== PASSES) {
+    return;
+  }
+
+  if (item.sellIn === 0) {
+    item.quality = 0;
+  } else if (item.sellIn < 6) {
+    item.quality = item.quality + 2;
+  } else if (item.sellIn < 11) {
+    item.quality = item.quality + 1;
   }
 };
 
 const updateCommonItem = (item) => {
-  if (item.quality > 0) {
-    item.quality = item.quality - 1;
+  if (item.quality <= 0) {
+    return;
+  }
 
-    if (item.sellIn === 0) {
-      item.quality = item.quality - 1;
-    }
+  item.quality = item.quality - 1;
+  if (item.sellIn === 0) {
+    item.quality = item.quality - 1;
   }
 };
 
