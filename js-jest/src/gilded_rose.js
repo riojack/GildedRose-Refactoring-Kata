@@ -3,53 +3,61 @@ const BRIE = 'Aged Brie';
 const PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
 const updateAgedBrie = (item) => {
-  if (item.quality >= 50) {
+  const {quality} = item;
+
+  if (quality >= 50) {
     return;
   }
 
-  item.quality = item.quality + 1;
+  item.quality = quality + 1;
 };
 
 const updateBackstagePass = (item) => {
-  if (item.quality >= 50) {
+  const {quality, sellIn} = item;
+
+  if (quality >= 50) {
     return;
   }
 
-  if (item.sellIn === 0) {
+  if (sellIn === 0) {
     item.quality = 0;
-  } else if (item.sellIn <= 5) {
-    item.quality = item.quality + 3;
-  } else if (item.sellIn <= 10) {
-    item.quality = item.quality + 2;
+  } else if (sellIn <= 5) {
+    item.quality = quality + 3;
+  } else if (sellIn <= 10) {
+    item.quality = quality + 2;
   } else {
-    item.quality = item.quality + 1;
+    item.quality = quality + 1;
   }
 };
 
 const updateCommonItem = (item) => {
-  if (item.quality <= 0) {
+  const {quality, sellIn} = item;
+
+  if (quality <= 0) {
     return;
   }
 
-  if (item.sellIn === 0) {
-    item.quality = item.quality - 2;
+  if (sellIn === 0) {
+    item.quality = quality - 2;
   } else {
-    item.quality = item.quality - 1;
+    item.quality = quality - 1;
   }
 };
 
 const updateItem = (item) => {
-  if (item.name === SULFURAS) {
+  const {name, sellIn} = item;
+
+  if (name === SULFURAS) {
     return item;
   }
 
-  if (item.sellIn > 0) {
-    item.sellIn = item.sellIn - 1;
+  if (sellIn > 0) {
+    item.sellIn = sellIn - 1;
   }
 
-  if (item.name === BRIE) {
+  if (name === BRIE) {
     updateAgedBrie(item);
-  } else if (item.name === PASSES) {
+  } else if (name === PASSES) {
     updateBackstagePass(item);
   } else {
     updateCommonItem(item);
