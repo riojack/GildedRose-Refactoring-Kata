@@ -31,16 +31,17 @@ class Shop {
         return updatedItem;
       }
 
+      if (updatedItem.sellIn > 0) {
+        updatedItem.sellIn = updatedItem.sellIn - 1;
+      }
+
       if (updatedItem.name == BRIE || updatedItem.name == PASSES) {
         updateQualityForAgedBrieOrBackstagePasses(updatedItem);
       } else if (updatedItem.quality > 0) {
         updatedItem.quality = updatedItem.quality - 1;
       }
 
-      updatedItem.sellIn = updatedItem.sellIn - 1;
-
-      if (updatedItem.sellIn < 0) {
-        updatedItem.sellIn = 0;
+      if (updatedItem.sellIn == 0) {
         if (updatedItem.name != BRIE) {
           if (updatedItem.name != PASSES) {
             if (updatedItem.quality > 0) {
