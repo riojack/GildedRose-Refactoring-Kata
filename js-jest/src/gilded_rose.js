@@ -1,5 +1,13 @@
 const {SULFURAS, BRIE, PASSES} = require('./item_names');
 
+const updateSellIn = (item) => {
+  const {sellIn} = item;
+
+  if (sellIn >= 1) {
+    item.sellIn = sellIn - 1;
+  }
+};
+
 const updateAgedBrieItemQuality = (item) => {
   const {quality} = item;
 
@@ -43,15 +51,13 @@ const updateCommonItemQuality = (item) => {
 };
 
 const updateItem = (item) => {
-  const {name, sellIn} = item;
+  const {name} = item;
 
   if (name === SULFURAS) {
     return item;
   }
 
-  if (sellIn >= 1) {
-    item.sellIn = sellIn - 1;
-  }
+  updateSellIn(item);
 
   if (name === BRIE) {
     updateAgedBrieItemQuality(item);
