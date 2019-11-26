@@ -18,6 +18,12 @@ const updateAgedBrieOrBackstagePass = (item) => {
   }
 };
 
+const updateCommonItem = (item) => {
+  if (item.quality > 0) {
+    item.quality = item.quality - 1;
+  }
+};
+
 const updateItem = (item) => {
   if (item.name == SULFURAS) {
     return item;
@@ -29,8 +35,8 @@ const updateItem = (item) => {
 
   if (item.name == BRIE || item.name == PASSES) {
     updateAgedBrieOrBackstagePass(item);
-  } else if (item.quality > 0) {
-    item.quality = item.quality - 1;
+  } else {
+    updateCommonItem(item);
   }
 
   if (item.sellIn == 0) {
