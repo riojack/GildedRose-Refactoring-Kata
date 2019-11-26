@@ -40,6 +40,7 @@ class Shop {
       updatedItem.sellIn = updatedItem.sellIn - 1;
 
       if (updatedItem.sellIn < 0) {
+        updatedItem.sellIn = 0;
         if (updatedItem.name != BRIE) {
           if (updatedItem.name != PASSES) {
             if (updatedItem.quality > 0) {

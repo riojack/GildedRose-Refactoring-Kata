@@ -65,6 +65,17 @@ describe('Gilded Rose', () => {
     expect(shop.items[0].sellIn).toBe(4);
   });
 
+  it('should prevent negative sellIn after Brewfest Sampler has expired', () => {
+    const sellIn = 0;
+    const quality = 10;
+
+    const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]).updateQuality();
+
+    expect(shop.items[0].sellIn).toBe(0);
+  });
+
   it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
     const sellIn = 5;
     const quality = 10;
