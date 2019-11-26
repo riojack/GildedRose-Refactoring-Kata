@@ -1,6 +1,6 @@
 const {SULFURAS, BRIE, PASSES} = require('./item_names');
 
-const updateAgedBrieItem = (item) => {
+const updateAgedBrieItemQuality = (item) => {
   const {quality} = item;
 
   if (quality >= 50) {
@@ -10,7 +10,7 @@ const updateAgedBrieItem = (item) => {
   item.quality = quality + 1;
 };
 
-const updateBackstagePassItem = (item) => {
+const updateBackstagePassItemQuality = (item) => {
   const {quality, sellIn} = item;
 
   if (quality >= 50) {
@@ -28,7 +28,7 @@ const updateBackstagePassItem = (item) => {
   }
 };
 
-const updateCommonItem = (item) => {
+const updateCommonItemQuality = (item) => {
   const {quality, sellIn} = item;
 
   if (quality <= 0) {
@@ -54,11 +54,11 @@ const updateItem = (item) => {
   }
 
   if (name === BRIE) {
-    updateAgedBrieItem(item);
+    updateAgedBrieItemQuality(item);
   } else if (name === PASSES) {
-    updateBackstagePassItem(item);
+    updateBackstagePassItemQuality(item);
   } else {
-    updateCommonItem(item);
+    updateCommonItemQuality(item);
   }
 
   return item;
