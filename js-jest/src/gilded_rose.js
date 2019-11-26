@@ -39,16 +39,12 @@ const updateItem = (item) => {
     updateCommonItem(item);
   }
 
-  if (item.sellIn == 0) {
-    if (item.name != BRIE) {
-      if (item.name != PASSES) {
-        if (item.quality > 0) {
-          item.quality = item.quality - 1;
-        }
-      } else {
-        item.quality = 0;
-      }
-    }
+  if (item.sellIn == 0 && item.name != BRIE && item.name != PASSES && item.quality > 0) {
+    item.quality = item.quality - 1;
+  }
+
+  if (item.sellIn == 0 && item.name == PASSES) {
+    item.quality = 0;
   }
 
   return item;
