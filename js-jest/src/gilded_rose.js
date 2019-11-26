@@ -21,7 +21,12 @@ const updateAgedBrieOrBackstagePass = (item) => {
 const updateCommonItem = (item) => {
   if (item.quality > 0) {
     item.quality = item.quality - 1;
+
+    if (item.sellIn === 0) {
+      item.quality = item.quality - 1;
+    }
   }
+
 };
 
 const updateItem = (item) => {
@@ -39,9 +44,7 @@ const updateItem = (item) => {
     updateCommonItem(item);
   }
 
-  if (item.sellIn === 0 && item.quality > 0 && item.name !== BRIE && item.name !== PASSES) {
-    item.quality = item.quality - 1;
-  } else if (item.sellIn === 0 && item.name === PASSES) {
+  if (item.sellIn === 0 && item.name === PASSES) {
     item.quality = 0;
   }
 
