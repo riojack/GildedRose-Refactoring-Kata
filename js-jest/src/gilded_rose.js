@@ -24,33 +24,37 @@ class Shop {
   }
 
   updateQuality() {
-    this.items.forEach((item) => {
-      if (item.name == SULFURAS) {
-        return;
+    const updatedItems = this.items.map((item) => {
+      const updatedItem = item.copy();
+
+      if (updatedItem.name == SULFURAS) {
+        return updatedItem;
       }
 
-      if (item.name == BRIE || item.name == PASSES) {
-        updateQualityForAgedBrieOrBackstagePasses(item);
-      } else if (item.quality > 0) {
-        item.quality = item.quality - 1;
+      if (updatedItem.name == BRIE || updatedItem.name == PASSES) {
+        updateQualityForAgedBrieOrBackstagePasses(updatedItem);
+      } else if (updatedItem.quality > 0) {
+        updatedItem.quality = updatedItem.quality - 1;
       }
 
-      item.sellIn = item.sellIn - 1;
+      updatedItem.sellIn = updatedItem.sellIn - 1;
 
-      if (item.sellIn < 0) {
-        if (item.name != BRIE) {
-          if (item.name != PASSES) {
-            if (item.quality > 0) {
-              item.quality = item.quality - 1;
+      if (updatedItem.sellIn < 0) {
+        if (updatedItem.name != BRIE) {
+          if (updatedItem.name != PASSES) {
+            if (updatedItem.quality > 0) {
+              updatedItem.quality = updatedItem.quality - 1;
             }
           } else {
-            item.quality = 0;
+            updatedItem.quality = 0;
           }
         }
       }
+
+      return updatedItem;
     });
 
-    return new Shop();
+    return new Shop(updatedItems);
   }
 }
 

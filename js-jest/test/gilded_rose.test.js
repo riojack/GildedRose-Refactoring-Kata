@@ -24,9 +24,7 @@ describe('Gilded Rose', () => {
       new Item('baz', 5, 32)
     ]);
 
-    gildedRose.updateQuality();
-
-    const [foo, bar, baz] = gildedRose.items;
+    const [foo, bar, baz] = gildedRose.updateQuality().items;
 
     expect(foo.quality).toBe(4);
     expect(bar.quality).toBe(0);
@@ -37,14 +35,32 @@ describe('Gilded Rose', () => {
     expect(baz.sellIn).toBe(4);
   });
 
+  it('should create copies of all items after updating quality of items', () => {
+    const gildedRose = new Shop([
+      new Item('foo', 5, 5),
+      new Item('bar', 5, 1),
+      new Item('baz', 5, 32)
+    ]);
+
+    const [foo, bar, baz] = gildedRose.updateQuality().items;
+
+    expect(foo).toBeDefined();
+    expect(foo).not.toBe(gildedRose.items[0]);
+
+    expect(bar).toBeDefined();
+    expect(bar).not.toBe(gildedRose.items[1]);
+
+    expect(baz).toBeDefined();
+    expect(baz).not.toBe(gildedRose.items[2]);
+  });
+
   it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
     const sellIn = 5;
     const quality = 10;
 
     const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
-    shop.updateQuality();
+    const shop = new Shop([brewfestSampler]).updateQuality();
 
     expect(shop.items[0].quality).toBe(9);
   });
@@ -55,8 +71,7 @@ describe('Gilded Rose', () => {
 
     const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
-    shop.updateQuality();
+    const shop = new Shop([brewfestSampler]).updateQuality();
 
     expect(shop.items[0].quality).toBe(8);
   });
@@ -67,8 +82,7 @@ describe('Gilded Rose', () => {
 
     const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
-    shop.updateQuality();
+    const shop = new Shop([brewfestSampler]).updateQuality();
 
     expect(shop.items[0].quality).toBe(0);
   });
@@ -79,8 +93,7 @@ describe('Gilded Rose', () => {
 
     const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([agedBrie]);
-    shop.updateQuality();
+    const shop = new Shop([agedBrie]).updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
   });
@@ -91,8 +104,7 @@ describe('Gilded Rose', () => {
 
     const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([agedBrie]);
-    shop.updateQuality();
+    const shop = new Shop([agedBrie]).updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
   });
@@ -103,8 +115,7 @@ describe('Gilded Rose', () => {
 
     const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([agedBrie]);
-    shop.updateQuality();
+    const shop = new Shop([agedBrie]).updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
   });
@@ -115,8 +126,7 @@ describe('Gilded Rose', () => {
 
     const agedBrie = new Item('Aged Brie', sellIn, quality);
 
-    const shop = new Shop([agedBrie]);
-    shop.updateQuality();
+    const shop = new Shop([agedBrie]).updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
   });
@@ -127,10 +137,10 @@ describe('Gilded Rose', () => {
 
     const sulfuras = new Item('Sulfuras, Hand of Ragnaros', sellIn, quality);
 
-    const shop = new Shop([sulfuras]);
-    shop.updateQuality();
-    shop.updateQuality();
-    shop.updateQuality();
+    const shop = new Shop([sulfuras])
+      .updateQuality()
+      .updateQuality()
+      .updateQuality();
 
     expect(shop.items[0].sellIn).toBe(sellIn);
     expect(shop.items[0].quality).toBe(quality);
@@ -142,8 +152,7 @@ describe('Gilded Rose', () => {
 
     const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([backstagePasses]);
-    shop.updateQuality();
+    const shop = new Shop([backstagePasses]).updateQuality();
 
     expect(shop.items[0].quality).toBe(6);
   });
@@ -154,8 +163,7 @@ describe('Gilded Rose', () => {
 
     const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([backstagePasses]);
-    shop.updateQuality();
+    const shop = new Shop([backstagePasses]).updateQuality();
 
     expect(shop.items[0].quality).toBe(50);
   });
@@ -166,8 +174,7 @@ describe('Gilded Rose', () => {
 
     const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([backstagePasses]);
-    shop.updateQuality();
+    const shop = new Shop([backstagePasses]).updateQuality();
 
     expect(shop.items[0].quality).toBe(7);
   });
@@ -178,8 +185,7 @@ describe('Gilded Rose', () => {
 
     const brewfestSampler = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([brewfestSampler]);
-    shop.updateQuality();
+    const shop = new Shop([brewfestSampler]).updateQuality();
 
     expect(shop.items[0].quality).toBe(8);
   });
@@ -190,8 +196,7 @@ describe('Gilded Rose', () => {
 
     const backstagePasses = new Item('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
 
-    const shop = new Shop([backstagePasses]);
-    shop.updateQuality();
+    const shop = new Shop([backstagePasses]).updateQuality();
 
     expect(shop.items[0].quality).toBe(0);
   });
