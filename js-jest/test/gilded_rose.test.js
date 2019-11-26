@@ -15,7 +15,9 @@ describe('Gilded Rose', () => {
       new Item('baz', 5, 32)
     ]);
 
-    const [foo, bar, baz] = gildedRose.updateQuality();
+    gildedRose.updateQuality();
+
+    const [foo, bar, baz] = gildedRose.items;
 
     expect(foo.quality).toBe(4);
     expect(bar.quality).toBe(0);
