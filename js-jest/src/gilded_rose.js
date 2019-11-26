@@ -49,6 +49,8 @@ class Shop {
         }
       }
     });
+
+    return new Shop();
   }
 }
 

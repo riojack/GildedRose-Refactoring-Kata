@@ -8,6 +8,15 @@ describe('Gilded Rose', () => {
     expect(shop.items).toHaveLength(0);
   });
 
+  it('should return a new instance of the Shop with an empty list by default', () => {
+    const shop = new Shop();
+    const shopAfterUpdate = shop.updateQuality();
+
+    expect(shopAfterUpdate).toBeInstanceOf(Shop);
+    expect(shopAfterUpdate.items).toHaveLength(0);
+    expect(shopAfterUpdate.items).not.toBe(shop.items);
+  });
+
   it('should update all items in the store', () => {
     const gildedRose = new Shop([
       new Item('foo', 5, 5),
