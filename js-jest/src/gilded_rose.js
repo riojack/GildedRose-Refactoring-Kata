@@ -6,7 +6,7 @@ const updateAgedBrieOrBackstagePass = (item) => {
   if (item.quality < 50) {
     item.quality = item.quality + 1;
 
-    if (item.name == PASSES) {
+    if (item.name === PASSES) {
       if (item.sellIn < 11) {
         item.quality = item.quality + 1;
       }
@@ -25,7 +25,7 @@ const updateCommonItem = (item) => {
 };
 
 const updateItem = (item) => {
-  if (item.name == SULFURAS) {
+  if (item.name === SULFURAS) {
     return item;
   }
 
@@ -33,15 +33,15 @@ const updateItem = (item) => {
     item.sellIn = item.sellIn - 1;
   }
 
-  if (item.name == BRIE || item.name == PASSES) {
+  if (item.name === BRIE || item.name === PASSES) {
     updateAgedBrieOrBackstagePass(item);
   } else {
     updateCommonItem(item);
   }
 
-  if (item.sellIn == 0 && item.name != BRIE && item.name != PASSES && item.quality > 0) {
+  if (item.sellIn === 0 && item.name !== BRIE && item.name !== PASSES && item.quality > 0) {
     item.quality = item.quality - 1;
-  } else if (item.sellIn == 0 && item.name == PASSES) {
+  } else if (item.sellIn === 0 && item.name === PASSES) {
     item.quality = 0;
   }
 
