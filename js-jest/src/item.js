@@ -10,4 +10,6 @@ class Item {
   }
 }
 
-module.exports = {Item};
+module.exports = {
+  Item
+};
