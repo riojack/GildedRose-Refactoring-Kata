@@ -54,6 +54,17 @@ describe('Gilded Rose', () => {
     expect(baz).not.toBe(gildedRose.items[2]);
   });
 
+  it('should degrade an unexpired Brewfest Sampler\'s sellIn by one after one day', () => {
+    const sellIn = 5;
+    const quality = 10;
+
+    const brewfestSampler = new Item('Brewfest Sampler', sellIn, quality);
+
+    const shop = new Shop([brewfestSampler]).updateQuality();
+
+    expect(shop.items[0].sellIn).toBe(4);
+  });
+
   it('should degrade an unexpired Brewfest Sampler\'s quality by one after one day', () => {
     const sellIn = 5;
     const quality = 10;
